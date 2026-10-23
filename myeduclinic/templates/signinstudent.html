@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        input[type="text"], input[type="password"], input[type="submit"], a.button {
+            width: calc(50% - 8px); /* Half width minus some margin */
+            padding: 12px;
+            margin: 8px 4px;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"], input[type="password"] {
+            border: 1px solid #ccc;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        a.button {
+            display: inline-block;
+            text-align: center;
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #d32f2f;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <h3>Enter student email address:</h3>
+            <input type="text" name="studentemail" placeholder="Email Address" required>
+
+            <h3>Enter student password:</h3>
+            <input type="password" name="studentpassword" placeholder="Password" required>
+
+            <div class="button-container">
+                <input type="submit" value="SUBMIT">
+                <a href="{% url 'login' %}" class="button">Return</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPMB MyEduClinic - Sign Up</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .signup-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+
+        #logo {
+            width: 50%; /* Increased the size of the logo */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem; /* Adjust font size of the title */
+        }
+
+        .button {
+            width: 100%;
+            padding: 15px; /* Increased padding for larger buttons */
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px; /* Increased font size for buttons */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .login-link {
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    {% load static %}
+</head>
+<body>
+    <div class="container">
+        <div class="signup-box">
+            <img id="logo" src="{% static 'logo kpmb.jpeg' %}" alt="KPMB Logo">
+            <h2>KPMB MyEduClinic Sign Up As ?</h2>
+            <a href="{% url 'signupstudent' %}" class="button">Sign Up as Student</a>
+            <a href="{% url 'signupmentor' %}" class="button">Sign Up as Mentor</a>
+            <div class="login-link">
+                <p>Already have an account?</p>
+                <a href="{% url 'login' %}">Log In</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

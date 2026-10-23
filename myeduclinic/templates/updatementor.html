@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyEduClinic - Mentor Update</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-top: 10px;
+            color: #555;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 480px) {
+            .form-container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form action="{% url 'updatementordata' updateid.mentorid %}" method="post">
+            {% csrf_token %}
+            <h2>Update Mentor Subject</h2>
+        
+            <label>Enter Mentor ID:</label>
+            <input name="mentorid" type="text" value="{{ updateid.mentorid }}" required disabled>
+        
+            <label>Enter Mentor Name:</label>
+            <input name="mentorname" type="text" value="{{ updateid.mentorname }}" required>
+        
+            <label>Enter Mentor Course:</label>
+            <input name="mentorcourse" type="text" value="{{ updateid.mentorcourse }}" required>
+        
+            <label>Enter Mentor New Phone Number:</label>
+            <input name="mentorphonenum" type="text" value="{{ updateid.mentorphonenum }}" required>
+        
+            <label>Enter Subject Code:</label>
+            <input name="subjectcode" type="text" value="{{ subjectcode }}" required>            
+        
+            <label>Enter Subject Name:</label>
+            <input name="subjectname" type="text" value="{{ subjectname }}" required>
+
+            <label>Enter New Meeting Place:</label>
+            <input name="mentormeet" type="text" value="{{ mentormeet }}" required>
+        
+            <input type="submit" value="SUBMIT">
+        </form>
+    </div>
+</body>
+</html>

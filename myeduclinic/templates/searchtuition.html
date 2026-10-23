@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPMB MyEduClinic - Search Tuition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #fafafa;
+        }
+
+        #sidebar {
+            background-color: #f0f0f0;
+            padding: 10px;
+            width: 200px;
+            position: fixed;
+            height: 100%;
+            border-right: 1px solid #ddd;
+        }
+
+        #sidebar a {
+            display: block;
+            margin: 10px 0;
+            color: #333;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        #sidebar a:hover {
+            background-color: #e0e0e0;
+        }
+
+        form {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: calc(100% - 20px);
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            margin-left: 220px;
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+
+        .update-btn, .delete-btn {
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .update-btn {
+            background-color: #28a745;
+        }
+
+        .update-btn:hover {
+            background-color: #218838;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <a href="{% url 'newtuition' %}">New Tuition</a>
+        <a href="{% url 'login' %}">Return to Login</a>
+    </div>
+    <form action="{% url 'searchtuition' %}" method="get">
+        <h3>Enter Tuition Code, Subject Code, or Date:</h3>
+        <input type="text" name="search" placeholder="Search by Tuition Code, Subject Code, or Tuition Date">
+        <input type="submit" value="SEARCH">
+    </form>
+    <table>
+        <tr>
+            <th>Tuition Code</th>
+            <th>Tuition Student ID</th>
+            <th>Tuition Mentor ID</th>
+            <th>Subject Code</th>
+            <th>Tuition Meet</th>
+            <th>Tuition Date</th>
+            <th>Tuition Duration (hours)</th>
+            <th>Action</th>
+        </tr>
+        <tbody>
+            {% if mytuition %}
+                {% for x in mytuition %}
+                <tr>
+                    <td>{{ x.tuitioncode }}</td>
+                    <td>{{ x.tuitionstudentid.studentid }}</td> 
+                    <td>{{ x.tuitionmentorid.mentorid }}</td> 
+                    <td>{{ x.subjectcode.subjectcode }}</td> 
+                    <td>{{ x.tuitionmeet }}</td>
+                    <td>{{ x.tuitiondate }}</td>
+                    <td>{{ x.tuitionduration }}</td>
+                    <td>
+                        {% if x.tuitionstudentid and x.tuitioncode %}
+                            <a href="{% url 'updatetuition' x.tuitionstudentid.studentid x.tuitioncode %}" class="update-btn">UPDATE</a>
+                        {% endif %}
+                        {% if x.tuitioncode %}
+                            <a href="{% url 'deletetuition' x.tuitioncode %}" class="delete-btn">DELETE</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="8">No tuition records found</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>

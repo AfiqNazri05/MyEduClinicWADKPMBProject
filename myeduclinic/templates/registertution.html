@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPMB MyEduClinic - Register Mentor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2>Register Mentor</h2>
+
+            <label>Enter Mentor ID:</label>
+            <input name="mentorid" type="text" required>
+
+            <label>Enter Mentor Name:</label>
+            <input name="mentorname" type="text" required>
+
+            <label>Enter Mentor Course:</label>
+            <input name="mentorcourse" type="text" required>
+
+            <label>Enter Mentor Phone Number:</label>
+            <input name="mentorphonenum" type="text" required>
+
+            <label>Enter Subject Code:</label>
+            <input name="subjectcode" type="text" required>
+
+            <label>Enter Subject Name:</label>
+            <input name="subjectname" type="text" required>
+
+            <label>Enter Default Meeting Place:</label>
+            <input name="mentormeet" type="text" required>
+
+            <input type="submit" value="SUBMIT">
+        </form>
+    </div>
+</body>
+</html>

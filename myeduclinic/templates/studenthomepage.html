@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPMB MyEduClinic - Student Homepage</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #sidebar {
+            width: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #sidebar a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid transparent;
+            transition: background-color 0.3s ease, border 0.3s ease;
+        }
+
+        #sidebar a:hover {
+            background-color: #007BFF;
+            color: white;
+            border: 1px solid #007BFF;
+        }
+
+        #content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        #logo {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        header {
+            text-align: left;
+        }
+
+        header h2 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        main {
+            padding: 50px;
+            flex: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .update-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .update-btn:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            width: 100%;
+            padding: 10px;
+            background-color: #f0f0f0;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        footer h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+    </style>
+    {% load static %}
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <a href="{% url 'newtuition' %}">New Tuition</a>
+        <a href="{% url 'updatestudentprofile' mystudent.studentid %}">Update Student Profile</a>
+        <a href="{% url 'searchtuition' %}">Search Tuition</a>
+        <a href="{% url 'login' %}">Return to Login</a>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <div id="header-container">
+            <img id="logo" src="{% static 'logo kpmb.jpeg' %}" alt="KPMB Logo">
+            <header>
+                {% if mystudent %}
+                    <h2>Welcome {{ mystudent.studentname }} to the KPMB MyEduClinic Homepage</h2>
+                {% else %}
+                    <h2>Student not found</h2>
+                {% endif %}
+            </header>
+        </div>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tuition Code</th>
+                        <th>Tuition Student ID</th>
+                        <th>Tuition Mentor ID</th>
+                        <th>Subject Code</th>
+                        <th>Tuition Meet</th>
+                        <th>Tuition Date</th>
+                        <th>Tuition Duration (hours)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if mytuition %}
+                        {% for x in mytuition %}
+                        <tr>
+                            <td>{{ x.tuitioncode }}</td>
+                            <td>{{ x.tuitionstudentid.studentid }}</td> 
+                            <td>{{ x.tuitionmentorid.mentorid }}</td> 
+                            <td>{{ x.subjectcode.subjectcode }}</td> 
+                            <td>{{ x.tuitionmeet }}</td>
+                            <td>{{ x.tuitiondate }}</td>
+                            <td>{{ x.tuitionduration }}</td>
+                            <td><a href="{% url 'updatetuition' mystudent.studentid x.tuitioncode %}" class="update-btn">UPDATE</a></td>
+                            <td><a href="{% url 'deletetuition' x.tuitioncode %}" class="update-btn">DELETE</a></td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="8">No tuition records available</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+    <footer>
+        <h3>@ Copyright KPMB MyEduClinic</h3>
+    </footer>
+</body>
+</html>

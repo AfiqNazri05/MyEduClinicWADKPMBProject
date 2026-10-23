@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyEduClinic - Update Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .disabled {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
+
+        .return-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px 15px; 
+            border-radius: 4px; 
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .return-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update Profile</h2>
+        <form action="{% url 'updatestudentdata' student.studentid %}" method="post">
+            {% csrf_token %}
+            <h3>Enter Student ID</h3>
+            <input type="text" name="studentid" value="{{ student.studentid }}" class="disabled" disabled><br>
+
+            <h3>Enter Student Name</h3>
+            <input type="text" name="studentname" value="{{ student.studentname }}"><br>
+
+            <h3>Enter Student Email</h3>
+            <input type="text" name="studentemail" value="{{ student.studentemail }}"><br>
+
+            <h3>Enter Student Password</h3>
+            <input type="text" name="studentpassword" value="{{ student.studentpassword }}"><br>
+
+            <h3>Enter Student Phone Number</h3>
+            <input type="text" name="studentphonenum" value="{{ student.studentphonenum }}"><br>
+
+            <input type="submit" value="UPDATE">
+            <a href="{% url 'studenthomepage' student.studentid %}" class="return-link">RETURN</a>
+        </form>
+    </div>
+</body>
+</html>

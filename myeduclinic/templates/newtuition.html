@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPMB MyEduClinic - New Tuition</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>New Tuition Registration</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="tuitioncode">Enter Tuition Code:</label>
+            <input id="tuitioncode" name="tuitioncode" type="text">
+        
+            <label for="tuitionstudentid">Enter Student ID:</label>
+            <input id="tuitionstudentid" name="tuitionstudentid" type="text">
+        
+            <label for="mentorid">Enter Mentor ID:</label>
+            <select name="tuitionmentorid" id="mentorid">
+                {% for n in mymentor %}
+                    <option value="{{ n.mentorid }}">{{ n.mentorid }} - {{ n.mentorname }}</option>
+                {% endfor %}
+            </select>
+        
+            <label for="subjectcode">Select Subject:</label>
+            <select name="subjectcode" id="subjectcode">
+                {% for subject in mysubject %}
+                    <option value="{{ subject.subjectcode }}">{{ subject.subjectcode }} - {{ subject.subjectname }}</option>
+                {% endfor %}
+            </select>
+        
+            <label for="tuitionmeet">Enter Tuition Meet:</label>
+            <input id="tuitionmeet" name="tuitionmeet" type="text">
+        
+            <label for="tuitiondate">Enter Tuition Date:</label>
+            <input id="tuitiondate" name="tuitiondate" type="text">
+        
+            <label for="tuitionhours">Enter Tuition Hours:</label>
+            <input id="tuitionhours" name="tuitionduration" type="text">
+        
+            <input type="submit" value="SUBMIT">
+        </form>
+    </div>
+</body>
+</html>
